@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Posts = () => {
   const [posts, setPosts] = useState(null);
@@ -30,9 +31,9 @@ const Posts = () => {
         {posts.map((post) => {
           return (
             <li key={post.id}>
-              <a href={post.id}>
+              <Link to={`/posts/${post.id}`}>
                 <p>{post.title}</p>
-              </a>
+              </Link>
               <p>{post.content}</p>
             </li>
           );
