@@ -1,9 +1,10 @@
 import Posts from "./components/Posts";
+import NavigationBar from "./components/NavigationBar/NavigationBar";
 
 function App() {
   return (
     <>
-      <h1>Welcome to My Blog</h1>
+      <NavigationBar />
       <Posts />
     </>
   );

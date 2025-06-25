@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Comments from "./Comments";
+import NavigationBar from "./NavigationBar/NavigationBar";
 
 const Post = () => {
   const [post, setPost] = useState(null);
@@ -31,6 +32,7 @@ const Post = () => {
 
   return (
     <>
+      <NavigationBar />
       <p>{post.title}</p>
       <p>{post.content}</p>
       <Comments postId={postId} />
