@@ -1,0 +1,13 @@
+.flexnav {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid grey;
+  padding: 0px 24px 0px 24px;
+}
+
+.flexauth {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  /* border: 1px solid yellow; */
+}
