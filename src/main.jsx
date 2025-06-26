@@ -8,19 +8,21 @@ import {
 import "./index.css";
 import App from "./App.jsx";
 import Post from "./components/Post.jsx";
+import Signup from "./components/Signup/Signup.jsx";
+import Login from "./components/Login/Login.jsx";
+import Posts from "./components/Posts.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Navigate to={"/posts"} />,
-  },
-  {
-    path: "/posts",
     element: <App />,
-  },
-  {
-    path: "/posts/:postId",
-    element: <Post />,
+    children: [
+      { index: true, element: <Navigate to="/posts" replace /> },
+      { path: "posts", element: <Posts /> },
+      { path: "posts/:postId", element: <Post /> },
+      { path: "user/signup", element: <Signup /> },
+      { path: "user/login", element: <Login /> },
+    ],
   },
 ]);
 
