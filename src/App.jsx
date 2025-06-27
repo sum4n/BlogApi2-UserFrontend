@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState("");
 
   useEffect(() => {
     const storedToken = localStorage.getItem("jwt-token");
@@ -48,7 +48,7 @@ function App() {
   return (
     <>
       <NavigationBar user={user} handleLogout={handleLogout} />
-      <Outlet context={getToken} />
+      <Outlet context={{ getToken, user }} />
     </>
   );
 }
