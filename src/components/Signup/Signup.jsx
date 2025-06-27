@@ -20,17 +20,15 @@ const Signup = () => {
     fetch("http://localhost:3000/api/auth/signup", {
       method: "POST",
       headers: {
-        "Content-Type": "Application/JSON",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     })
       .then((response) => {
-        if (response.status >= 400) {
-          throw new Error("Error");
-        }
         return response.json();
       })
-      .then(() => {
+      .then((response) => {
+        console.log(response);
         setEmail("");
         setPassword("");
         alert("User has been saved");
@@ -43,6 +41,7 @@ const Signup = () => {
 
   return (
     <>
+      <h2>Create account:</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="email">Email: </label>
         <input
