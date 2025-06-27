@@ -1,9 +1,9 @@
 import styles from "./NavigationBar.module.css";
 import { Link } from "react-router-dom";
 
-const NavigationBar = () => {
-  const user = "";
-  // const user = { id: 1, email: "user@email.com", username: "user" };
+const NavigationBar = ({ user, handleLogout }) => {
+  // console.log(user);
+
   return (
     <div className={styles.flexnav}>
       <h1>
@@ -12,13 +12,13 @@ const NavigationBar = () => {
       {user && (
         <div className={styles.flexauth}>
           <p>{user.email}</p>
-          <a href="#">Logout</a>
+          <button onClick={handleLogout}>Logout</button>
         </div>
       )}
       {!user && (
         <div className={styles.flexauth}>
           <Link to="/user/signup">Signup</Link>
-          <a href="#">Login</a>
+          <Link to="/user/login">Login</Link>
         </div>
       )}
       {/* <hr /> */}
