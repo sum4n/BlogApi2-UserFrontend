@@ -1,5 +1,5 @@
 import { useNavigate, useOutletContext } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -9,6 +9,14 @@ const Login = () => {
   const { getToken } = useOutletContext();
 
   const navigate = useNavigate();
+
+  // If user is logged in, redirect to "/posts"
+  const { user } = useOutletContext();
+  useEffect(() => {
+    if (user) {
+      navigate("/posts", { replace: true });
+    }
+  }, [user, navigate]);
 
   function handleSubmit(e) {
     e.preventDefault();

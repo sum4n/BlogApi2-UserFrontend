@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -7,6 +7,14 @@ const Signup = () => {
   // const [error, setError] = useState(null);
 
   const navigate = useNavigate();
+
+  // If user is logged in, redirect to "/posts"
+  const { user } = useOutletContext();
+  useEffect(() => {
+    if (user) {
+      navigate("/posts", { replace: true });
+    }
+  }, [user, navigate]);
 
   function handleSubmit(e) {
     e.preventDefault();
