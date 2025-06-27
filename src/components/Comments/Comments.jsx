@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import CommentForm from "../CommentForm/CommentForm";
 
 const Comments = ({ postId }) => {
   const [comments, setComments] = useState(null);
@@ -19,28 +20,22 @@ const Comments = ({ postId }) => {
       .finally(() => setLoading(false));
   }, [postId]);
 
-  console.log(comments);
+  // console.log(comments);
   if (loading) return <p>Loading...</p>;
   if (errors) return <p>{errors.message}</p>;
 
   return (
     <>
+      <CommentForm
+        postId={postId}
+        comments={comments}
+        setComments={setComments}
+      />
+
       <hr />
       <p>Comments:</p>
       {comments.length === 0 && <p>No comments yet...</p>}
-      <form action="" method="post">
-        <p>
-          <label htmlFor="comment">Write a comment:</label>
-        </p>
-        <textarea
-          id="comment"
-          name="comment"
-          rows={4}
-          cols={50}
-          required
-        ></textarea>
-        <button type="submit">Submit</button>
-      </form>
+
       <ul>
         {comments.map((comment) => {
           return (
