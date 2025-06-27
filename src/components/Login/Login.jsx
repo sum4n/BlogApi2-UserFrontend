@@ -6,7 +6,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   // Get outlet context function to set token
-  const getToken = useOutletContext();
+  const { getToken } = useOutletContext();
 
   const navigate = useNavigate();
 
