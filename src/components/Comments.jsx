@@ -19,6 +19,7 @@ const Comments = ({ postId }) => {
       .finally(() => setLoading(false));
   }, [postId]);
 
+  console.log(comments);
   if (loading) return <p>Loading...</p>;
   if (errors) return <p>{errors.message}</p>;
 
@@ -27,11 +28,25 @@ const Comments = ({ postId }) => {
       <hr />
       <p>Comments:</p>
       {comments.length === 0 && <p>No comments yet...</p>}
+      <form action="" method="post">
+        <p>
+          <label htmlFor="comment">Write a comment:</label>
+        </p>
+        <textarea
+          id="comment"
+          name="comment"
+          rows={4}
+          cols={50}
+          required
+        ></textarea>
+        <button type="submit">Submit</button>
+      </form>
       <ul>
         {comments.map((comment) => {
           return (
             <li key={comment.id}>
               <p>{comment.content}</p>
+              <p>- {comment.author.email}</p>
             </li>
           );
         })}
