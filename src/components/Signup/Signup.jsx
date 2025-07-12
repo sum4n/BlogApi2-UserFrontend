@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
+import { API_BASE } from "../../config";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -25,7 +26,7 @@ const Signup = () => {
       password: password,
     };
 
-    fetch("http://localhost:3000/api/auth/signup", {
+    fetch(`${API_BASE}/api/auth/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -1,6 +1,7 @@
 import NavigationBar from "./components/NavigationBar/NavigationBar";
 import { Outlet } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { API_BASE } from "./config";
 
 function App() {
   const [user, setUser] = useState("");
@@ -8,7 +9,7 @@ function App() {
   useEffect(() => {
     const storedToken = localStorage.getItem("jwt-token");
     if (storedToken) {
-      fetch("http://localhost:3000/api/user", {
+      fetch(`${API_BASE}/api/user`, {
         headers: {
           Authorization: `Bearer ${storedToken}`,
         },
@@ -29,7 +30,7 @@ function App() {
   // on App, and set user data on login.
   function getToken(newToken) {
     localStorage.setItem("jwt-token", newToken);
-    fetch("http://localhost:3000/api/user", {
+    fetch(`${API_BASE}/api/user`, {
       headers: {
         Authorization: `Bearer ${newToken}`,
       },

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Comments from "./Comments/Comments";
+import { API_BASE } from "../config";
 
 const Post = () => {
   const [post, setPost] = useState(null);
@@ -10,7 +11,7 @@ const Post = () => {
   const { postId } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/posts/${postId}`)
+    fetch(`${API_BASE}/api/posts/${postId}`)
       .then(async (response) => {
         if (response.status >= 400) {
           // this captures the detailed error messages sent from backend

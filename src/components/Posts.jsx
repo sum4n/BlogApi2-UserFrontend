@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { API_BASE } from "../config";
 
 const Posts = () => {
   const [posts, setPosts] = useState(null);
@@ -7,7 +8,7 @@ const Posts = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/posts")
+    fetch(`${API_BASE}/api/posts`)
       .then(async (response) => {
         if (response.status >= 400) {
           const errorData = await response.json();

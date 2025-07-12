@@ -1,5 +1,6 @@
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { useState } from "react";
+import { API_BASE } from "../../config";
 
 const CommentForm = (props) => {
   const [comment, setComment] = useState("");
@@ -22,7 +23,7 @@ const CommentForm = (props) => {
     e.preventDefault();
     const storedToken = localStorage.getItem("jwt-token");
     // console.log(comment);
-    fetch(`http://localhost:3000/api/posts/${postId}/comments`, {
+    fetch(`${API_BASE}/api/posts/${postId}/comments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
