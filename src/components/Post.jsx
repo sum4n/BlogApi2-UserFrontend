@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Comments from "./Comments/Comments";
 import { API_BASE } from "../config";
+import { format } from "date-fns";
 
 const Post = () => {
   const [post, setPost] = useState(null);
@@ -33,8 +34,11 @@ const Post = () => {
 
   return (
     <>
-      <p>{post.title}</p>
+      <h2>{post.title}</h2>
       <p>{post.content}</p>
+      <small>
+        Created on: {format(new Date(post.createdAt), "dd-MM-yyyy hh:mm a")}
+      </small>
       <Comments postId={postId} />
     </>
   );
