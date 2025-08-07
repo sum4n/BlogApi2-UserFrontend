@@ -1,11 +1,16 @@
 import { useState, useEffect } from "react";
 import CommentForm from "../CommentForm/CommentForm";
 import { API_BASE } from "../../config";
+import { useOutletContext } from "react-router-dom";
+import { format } from "date-fns";
 
 const Comments = ({ postId }) => {
   const [comments, setComments] = useState(null);
   const [errors, setErrors] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const { user } = useOutletContext();
+  // console.log(user);
 
   useEffect(() => {
     fetch(`${API_BASE}/api/posts/${postId}/comments`)
@@ -41,8 +46,22 @@ const Comments = ({ postId }) => {
         {comments.map((comment) => {
           return (
             <li key={comment.id}>
+              <p>
+                {comment.author.email}
+                {" - "}
+                <small>
+                  {format(new Date(comment.createdAt), "dd MMMM yyyy hh:mm a")}
+                </small>
+              </p>
               <p>{comment.content}</p>
-              <p>- {comment.author.email}</p>
+
+              {user.id === comment.authorId && (
+                <p>
+                  <a href="#">Edit </a>
+                  {" - "}
+                  <a href="#">Delete</a>
+                </p>
+              )}
             </li>
           );
         })}
