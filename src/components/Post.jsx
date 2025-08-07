@@ -37,7 +37,7 @@ const Post = () => {
       <h2>{post.title}</h2>
       <p>{post.content}</p>
       <small>
-        Created on: {format(new Date(post.createdAt), "dd-MM-yyyy hh:mm a")}
+        Created on: {format(new Date(post.createdAt), "dd MMMM yyyy hh:mm a")}
       </small>
       <Comments postId={postId} />
     </>

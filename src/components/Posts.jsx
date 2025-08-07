@@ -48,7 +48,7 @@ const Posts = () => {
                 <p>{post.content}</p>
                 <small>
                   Created on:{" "}
-                  {format(new Date(post.createdAt), "dd-MM-yyyy hh:mm a")}
+                  {format(new Date(post.createdAt), "dd MMMM yyyy hh:mm a")}
                 </small>
                 <hr />
               </div>
