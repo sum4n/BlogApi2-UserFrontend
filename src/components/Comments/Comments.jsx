@@ -26,7 +26,33 @@ const Comments = ({ postId }) => {
       .finally(() => setLoading(false));
   }, [postId]);
 
-  // console.log(comments);
+  function handleDelete(commentId) {
+    let confirmDelete = confirm("Do you really want to delete the comment?");
+
+    if (confirmDelete) {
+      fetch(`${API_BASE}/api/posts/${postId}/comments/${commentId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwt-token")}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res);
+          if (res.success) {
+            // Remove from local state, no refetch
+            setComments((prev) =>
+              prev.filter((comment) => comment.id !== commentId)
+            );
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+          alert("Could not delete comment. Please try again.");
+        });
+    }
+  }
+
   if (loading) return <p>Loading...</p>;
   if (errors) return <p>{errors.message}</p>;
 
@@ -56,11 +82,13 @@ const Comments = ({ postId }) => {
               <p>{comment.content}</p>
 
               {user.id === comment.authorId && (
-                <p>
+                <div>
                   <a href="#">Edit </a>
                   {" - "}
-                  <a href="#">Delete</a>
-                </p>
+                  <button onClick={() => handleDelete(comment.id)}>
+                    Delete
+                  </button>
+                </div>
               )}
             </li>
           );
