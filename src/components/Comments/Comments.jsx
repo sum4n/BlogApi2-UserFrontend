@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
 import CommentForm from "../CommentForm/CommentForm";
 import { API_BASE } from "../../config";
-import { useOutletContext } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 import { format } from "date-fns";
 
 const Comments = ({ postId }) => {
   const [comments, setComments] = useState(null);
   const [errors, setErrors] = useState(null);
   const [loading, setLoading] = useState(true);
-
   const { user } = useOutletContext();
   // console.log(user);
 
@@ -81,9 +80,13 @@ const Comments = ({ postId }) => {
               </p>
               <p>{comment.content}</p>
 
-              {user.id === comment.authorId && (
+              {/* if there is user and user.id is same as comment.authorid */}
+              {/* The first user && is required else page crashes on logout on this page */}
+              {user && user.id === comment.authorId && (
                 <div>
-                  <a href="#">Edit </a>
+                  <Link to={`/posts/${postId}/comments/${comment.id}/edit`}>
+                    Edit
+                  </Link>
                   {" - "}
                   <button onClick={() => handleDelete(comment.id)}>
                     Delete
