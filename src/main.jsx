@@ -11,6 +11,7 @@ import Post from "./components/Post.jsx";
 import Signup from "./components/Signup/Signup.jsx";
 import Login from "./components/Login/Login.jsx";
 import Posts from "./components/Posts.jsx";
+import EditComment from "./components/EditComment/EditComment.jsx";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       { path: "posts/:postId", element: <Post /> },
       { path: "user/signup", element: <Signup /> },
       { path: "user/login", element: <Login /> },
+      {
+        path: "posts/:postId/comments/:commentId/edit",
+        element: <EditComment />,
+      },
     ],
   },
 ]);
